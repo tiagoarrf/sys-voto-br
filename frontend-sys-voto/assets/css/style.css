@@ -1,0 +1,257 @@
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+    background: linear-gradient(to top, #000000, #5e6983);
+    color: #3a3d44;
+}
+
+main {
+    display: flex;
+    flex-direction: inherit;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.urna-area {
+    border-style: outset;
+    background: linear-gradient(to top, #dbd5c9, #dddad3);
+}
+
+hr {
+    border: 1px solid #3d3a3a;
+    margin-top: 1rem;
+    position: absolute;
+    width: 95%;
+    bottom: 16%;
+}
+
+strong {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.parent {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+    background: linear-gradient(to top, #dbd5c9, #dddad3);
+}
+
+.urna-left {
+    grid-area: 1 / 1 / 5 / 4;
+    border-style: inset;
+    margin: 20px 10px 10px 30px;
+    padding: 1rem;
+    background: linear-gradient(to right, #b4baf1, #9098aa);
+    border-width: 10px;
+    border-radius: 3px;
+    height: 450px;
+    overflow: hidden;
+    position: relative;
+}
+
+.title {
+    margin-left: 0rem;
+    font-size: 1.2rem;
+}
+
+.title-voto {
+    margin-top: 1rem;
+}
+
+.message-nulo {
+    display: flex;
+    flex-direction: inherit;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: calc(3rem + 2vw);
+    font-weight: 700;
+}
+
+.message-fim {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 0px;
+    transform: translateX(50%);
+    position: absolute;
+    bottom: 50%;
+    font-size: calc(10rem + 2vw);
+    font-weight: 700;
+}
+
+.title-presidente {
+    margin: 0.3rem 0rem 1rem 0rem;
+    font-size: 2rem;
+}
+
+.title-numero {
+    border-spacing: 6px 0px;
+}
+
+.title-numero span {
+    display: table-cell;
+    text-align: center;
+    border-style: solid;
+    font-size: 4rem;
+    border-width: 2px;
+    width: 3rem;
+    height: 4.65rem;
+}
+
+@keyframes indicador {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.indicador {
+    animation-name: indicador;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+.title-nome {
+    margin-top: 0.5rem;
+}
+
+.title-partido {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.title-vice {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.img-presidente {
+    float: right;
+    right: 2%;
+    position: static;
+    overflow: hidden;
+}
+
+.img-presidente img {
+    border: 2px solid;
+    height: 9.5rem;
+    width: 9.5rem;
+    filter: grayscale(95%) opacity(70%);
+}
+
+.img-vice-presidente {
+    margin-top: 0.6rem;
+    float: right;
+    right: 2.6%;
+    position: absolute;
+    overflow: hidden;
+}
+
+.img-vice-presidente img {
+    border: 2px solid;
+    height: 8rem;
+    width: 8rem;
+    filter: grayscale(95%) opacity(70%);
+}
+
+.info-teclas {
+    font-size: 1rem;
+}
+
+.urna-rigth {
+    grid-area: 1 / 4 / 5 / 6;
+    margin: 0px 30px 10px 10px;
+    height: 530px;
+}
+
+.logo-urna {
+    font-size: calc(1rem + 1vw);
+    text-align: center;
+    margin: 0.3rem;
+}
+
+.board {
+    background-color: #3d3a3a;
+    color: #dbd5c9;
+    height: 95%;
+    padding: 1rem 1rem 0.3rem 1rem;
+    border-radius: 3px;
+}
+
+.by-auth {
+    font-size: 0.8rem;
+    margin: 0.3rem 0rem 1rem 2rem;
+    border-style: solid;
+    border-width: 2px;
+    width: 4rem;
+    text-align: center;
+}
+
+.progress {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px;
+    border: 2px solid;
+    height: 30px;
+    width: 45%;
+    transform: translateX(50%);
+    position: absolute;
+    bottom: 50%;
+
+}
+
+.progress-value {
+    animation: load 1s normal forwards;
+    box-shadow: 0 10px 40px -10px rgb(85, 81, 81);
+    background: #4f525a;
+    height: 100%;
+    width: 90%;
+}
+
+@keyframes load {
+    0% {
+        width: 0;
+    }
+
+    68% {
+        width: 68%;
+    }
+
+    80% {
+        width: 80%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes ocultBarr {
+    0% {
+        display: none;
+    }
+
+    100% {
+        display: none;
+    }
+}
+
+footer {
+    position: absolute;
+    bottom: 1%;
+}
