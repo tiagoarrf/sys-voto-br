@@ -20,6 +20,7 @@ let index = 0
 let confirmPressed
 let permitido = false
 let permitidoNulo = false
+let permitidoBranco = false
 let candidateEncontred
 let atualCargo
 let atualnumberCardo
@@ -153,7 +154,7 @@ function buttonsLarges(blanck, reset, confirm, finale) {
                     blanck.currentTime = 0
                     blanck.play()
                     display.votoBranco(atualCargo)
-                    permitido = true
+                    permitidoBranco = true
                     break;
                 case "CORRIGE":
                     reset.currentTime = 0
@@ -193,6 +194,7 @@ function buttonsLarges(blanck, reset, confirm, finale) {
                         permitido = false
                     }
                     if (permitidoNulo) {
+                        // data.vote(candidateEncontred.candidatoId)
                         index++
                         confirmPressed = true
                         confirm.currentTime = 0
@@ -204,17 +206,46 @@ function buttonsLarges(blanck, reset, confirm, finale) {
                                 atualnumberCardo = NUMBERS_CARGO_MODE2[index]
                             }
                             else {
+                                finale.currentTime = 0
+                                finale.play()
                                 setTimeout(() => {
                                     display.fim()
                                 }, 0);
                                 setTimeout(() => {
                                     resetVotação()
-                                }, 3000);
+                                }, 4000);
                             }
                             display.returnScreenInitial()
                             display.resetDisplay(atualCargo, atualnumberCardo)
-                        }, 2000);
+                        }, 1000);
                         permitidoNulo = false
+                    }
+                    if (permitidoBranco) {
+                        data.vote(candidateEncontred.candidatoId)
+                        index++
+                        confirmPressed = true
+                        confirm.currentTime = 0
+                        confirm.play()
+                        display.barraLoading()
+                        setTimeout(() => {
+                            if (index < etapas) {
+                                atualCargo = ORDEM_VOTACAO_MODO_2[index]
+                                atualnumberCardo = NUMBERS_CARGO_MODE2[index]
+                            }
+                            else {
+                                finale.currentTime = 0
+                                finale.play()
+                                setTimeout(() => {
+                                    display.fim()
+                                }, 0);
+                                setTimeout(() => {
+                                    resetVotação()
+                                }, 4000);
+                            }
+                            display.returnScreenInitial()
+                            display.resetDisplay(atualCargo, atualnumberCardo)
+                        }, 1000);
+                        permitidoBranco = false
                     }
                     break;
             }
