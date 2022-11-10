@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tiago.sysvoto.sysvoto.models.Candidato;
+import com.tiago.sysvoto.sysvoto.models.Eleicao;
 import com.tiago.sysvoto.sysvoto.service.CandidatoService;
+import com.tiago.sysvoto.sysvoto.service.EleicaoService;
 
 @CrossOrigin
 @RestController
@@ -21,6 +23,9 @@ public class CandidatoController {
 
     @Autowired
     CandidatoService candidatoService;
+
+    @Autowired
+    EleicaoService eleicaoService;
 
     @GetMapping("/candidato/find-all")
     public ResponseEntity<Object> find() {
@@ -55,18 +60,21 @@ public class CandidatoController {
         if (candidatoData != null) {
             return ResponseEntity.status(HttpStatus.OK).body(candidatoData);
         } else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Candidadto não encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Candidato não encontrado.");
     }
 
     @PostMapping("/eleitor/votar-canditato")
     @ResponseBody
     public ResponseEntity<Object> votarById(@RequestBody Candidato candidatoRequest) {
+        Eleicao eleicaoData = eleicaoService.findById(candidatoRequest.getEleicao().getEleicaoId());
         Candidato candidatoData = candidatoService.findById(candidatoRequest.getCandidatoId());
-        if (candidatoData != null) {
+        if (candidatoData != null && eleicaoData != null) {
             candidatoData.setQtdVotos(candidatoData.getQtdVotos() + 1);
+            eleicaoData.setTotalEleitores(eleicaoData.getTotalEleitores() + 1);
+            eleicaoService.save(eleicaoData);
             return ResponseEntity.status(HttpStatus.OK).body(candidatoService.save(candidatoData));
         } else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Candidadto não encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Eleição ou candidato não encontrado.");
     }
 
     @DeleteMapping("/candidato/delete")
@@ -77,7 +85,7 @@ public class CandidatoController {
             candidatoService.delete(candidatoData);
             return ResponseEntity.status(HttpStatus.OK).body(candidatoData);
         } else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Candidadto não encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Candidato não encontrado.");
     }
 
     @DeleteMapping("/candidato/delete-all")

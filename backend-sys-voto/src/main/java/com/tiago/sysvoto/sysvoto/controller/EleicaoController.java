@@ -27,7 +27,7 @@ public class EleicaoController {
     @GetMapping("/eleicao/find-all")
     public ResponseEntity<Object> find() {
         if (eleicaoService.findAll().isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sem eleicoes cadastradas");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sem eleições cadastradas");
         } else
             return new ResponseEntity<>(eleicaoService.findAll(), HttpStatus.OK);
     }
@@ -40,7 +40,7 @@ public class EleicaoController {
         if (eleicaoService.save(eleicao) != null) {
             return new ResponseEntity<>(eleicaoService.save(eleicao), HttpStatus.OK);
         } else
-            return new ResponseEntity<>("Erro ao adicionar eleicao", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Erro ao adicionar eleição", HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("/eleicao/update")
@@ -50,6 +50,30 @@ public class EleicaoController {
             return new ResponseEntity<>(eleicaoService.save(eleicao), HttpStatus.OK);
         } else
             return new ResponseEntity<>(eleicaoService.save(eleicao), HttpStatus.OK);
+    }
+
+    @PostMapping("/eleicao/votar-nullo")
+    @ResponseBody
+    public ResponseEntity<Object> votarNuloById(@RequestBody Eleicao eleicaoRequest) {
+        Eleicao eleicaoData = eleicaoService.findById(eleicaoRequest.getEleicaoId());
+        if (eleicaoData != null) {
+            eleicaoData.setVotosNulos(eleicaoData.getVotosNulos() + 1);
+            eleicaoData.setTotalEleitores(eleicaoData.getTotalEleitores() + 1);
+            return ResponseEntity.status(HttpStatus.OK).body(eleicaoService.save(eleicaoData));
+        } else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Eleição não encontrada.");
+    }
+
+    @PostMapping("/eleicao/votar-branco")
+    @ResponseBody
+    public ResponseEntity<Object> votarBrancoById(@RequestBody Eleicao eleicaoRequest) {
+        Eleicao eleicaoData = eleicaoService.findById(eleicaoRequest.getEleicaoId());
+        if (eleicaoData != null) {
+            eleicaoData.setVotosBrancos(eleicaoData.getVotosBrancos() + 1);
+            eleicaoData.setTotalEleitores(eleicaoData.getTotalEleitores() + 1);
+            return ResponseEntity.status(HttpStatus.OK).body(eleicaoService.save(eleicaoData));
+        } else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Eleição não encontrada.");
     }
 
     @PostMapping("/eleicao/find-eleicao-id")
@@ -70,7 +94,7 @@ public class EleicaoController {
             eleicaoService.delete(eleicaoData);
             return ResponseEntity.status(HttpStatus.OK).body(eleicaoData);
         } else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Eleicao não encontrada.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Eleição não encontrada.");
     }
 
     @DeleteMapping("/eleicao/delete-all")
@@ -79,6 +103,6 @@ public class EleicaoController {
         if (!eleicaoService.findAll().isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK).body(eleicaoService.deleteAll());
         } else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sem eleicoes cadastradas");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sem eleições cadastradas");
     }
 }
