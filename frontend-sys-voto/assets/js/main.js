@@ -168,9 +168,11 @@ function buttonsLarges(blanck, reset, confirm, finale) {
                     break;
                 case "CONFIRMA":
                     if (permitido) {
-                        data.vote(candidateEncontred.candidatoId)
+                        data.vote(candidateEncontred.candidatoId, eleicao.eleicaoId)
                         index++
                         confirmPressed = true
+                        permitidoBranco = false
+                        permitidoNulo = false
                         confirm.currentTime = 0
                         confirm.play()
                         display.barraLoading()

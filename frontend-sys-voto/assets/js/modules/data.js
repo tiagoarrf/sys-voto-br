@@ -26,14 +26,15 @@ async function getAllEleicoes() {
   }
 }
 
-async function vote(id) {
+async function vote(idCandidate, idEleicao) {
   try {
     const response = await fetch('http://localhost:8080/eleitor/votar-canditato', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ candidatoId: id })
+      body: JSON.stringify(
+        { candidatoId : idCandidate, eleicao : { eleicaoId : idEleicao }})
     })
     if (!response.ok) {
       throw new Error(`Error! status: ${response.status}`);
