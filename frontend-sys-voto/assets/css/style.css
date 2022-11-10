@@ -78,12 +78,9 @@ strong {
 
 .message-fim {
     display: flex;
-    flex-direction: column;
+    flex-direction: inherit;
     justify-content: center;
-    height: 0px;
-    transform: translateX(50%);
-    position: absolute;
-    bottom: 50%;
+    transform: translateY(50%);
     font-size: calc(10rem + 2vw);
     font-weight: 700;
 }
