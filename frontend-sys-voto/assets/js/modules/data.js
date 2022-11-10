@@ -64,8 +64,23 @@ async function voteNull(id) {
   }
 }
 
-function voteBranco(cargo) {
-  // console.log("votando branco para o cargo de: " + cargo)
+async function voteBranco(id) {
+  try {
+    const response = await fetch('http://localhost:8080/eleicao/votar-branco', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ eleicaoId: id })
+    })
+    if (!response.ok) {
+      throw new Error(`Error! status: ${response.status}`);
+    }
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export default {

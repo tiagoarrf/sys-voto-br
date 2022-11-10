@@ -224,7 +224,7 @@ function buttonsLarges(blanck, reset, confirm, finale) {
                         permitidoNulo = false
                     }
                     if (permitidoBranco) {
-                        // data.vote(candidateEncontred.candidatoId)
+                        data.voteBranco(eleicao.eleicaoId)
                         index++
                         confirmPressed = true
                         permitido = false

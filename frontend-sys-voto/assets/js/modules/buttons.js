@@ -47,7 +47,6 @@ function buttonsLarges(blanck, reset, confirm) {
     })
 }
 
-
 export default {
     btZero,
     buttonsLarges,
