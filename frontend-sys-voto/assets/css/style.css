@@ -29,11 +29,6 @@ hr {
     bottom: 16%;
 }
 
-strong {
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
 .parent {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -52,18 +47,18 @@ strong {
     background: linear-gradient(to right, #b4baf1, #9098aa);
     border-width: 10px;
     border-radius: 3px;
-    height: 450px;
     overflow: hidden;
     position: relative;
 }
 
 .title {
     margin-left: 0rem;
-    font-size: 1.2rem;
+    font-size: calc(0.6rem + 1vw);
 }
 
 .title-voto {
-    margin-top: 1rem;
+    margin-top: 0.3rem;
+    font-size: calc(0.6rem + 1vw);
 }
 
 .message-nulo {
@@ -80,14 +75,15 @@ strong {
     display: flex;
     flex-direction: inherit;
     justify-content: center;
-    transform: translateY(50%);
+    transform: translateY(calc(50% + 2vw));
     font-size: calc(10rem + 2vw);
     font-weight: 700;
 }
 
 .title-presidente {
-    margin: 0.3rem 0rem 1rem 0rem;
-    font-size: 2rem;
+    margin: 0.2rem 0rem 0.6rem 0rem;
+    font-size: calc(1.3rem + 1vw);
+    font-weight: 600;
 }
 
 .title-numero {
@@ -97,11 +93,10 @@ strong {
 .title-numero span {
     display: table-cell;
     text-align: center;
-    border-style: solid;
-    font-size: 4rem;
-    border-width: 2px;
-    width: 3rem;
-    height: 4.65rem;
+    border: 3px solid;
+    width: calc(2.2rem + 2vw);
+    height: calc(4rem + 2vw);
+    font-size: calc(3.3rem + 2vw);
 }
 
 @keyframes indicador {
@@ -126,29 +121,30 @@ strong {
 
 .title-nome {
     margin-top: 0.5rem;
+    font-size: calc(1rem + 1vw);
 }
 
 .title-partido {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 0.3rem;
+    font-size: calc(1rem + 1vw);
 }
 
 .title-vice {
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+    font-size: calc(1rem + 1vw);
+    font-weight: 600;
 }
 
 .img-presidente {
     float: right;
-    right: 2%;
-    position: static;
     overflow: hidden;
 }
 
 .img-presidente img {
     border: 2px solid;
-    height: 9.5rem;
-    width: 9.5rem;
+    height: calc(6rem + 5vw);
+    width: calc(6rem + 5vw);
     filter: grayscale(95%) opacity(70%);
 }
 
@@ -158,23 +154,29 @@ strong {
     right: 2.6%;
     position: absolute;
     overflow: hidden;
+    margin-top: 1rem;
+    bottom: 22%;
 }
 
 .img-vice-presidente img {
     border: 2px solid;
-    height: 8rem;
-    width: 8rem;
+    height: calc(4rem + 5vw);
+    width: calc(4rem + 5vw);
     filter: grayscale(95%) opacity(70%);
 }
 
 .info-teclas {
-    font-size: 1rem;
+    font-size: calc(0.6rem + 0.5vw);
+}
+
+strong {
+    font-weight: 600;
+    font-size: calc(0.55rem + 0.48vw);
 }
 
 .urna-rigth {
     grid-area: 1 / 4 / 5 / 6;
     margin: 0px 30px 10px 10px;
-    height: 530px;
 }
 
 .logo-urna {

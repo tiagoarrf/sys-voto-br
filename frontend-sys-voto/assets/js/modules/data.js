@@ -26,14 +26,14 @@ async function getAllEleicoes() {
   }
 }
 
-async function vote(candidatoId) {
+async function vote(id) {
   try {
     const response = await fetch('http://localhost:8080/eleitor/votar-canditato', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ candidatoId: candidatoId })
+      body: JSON.stringify({ candidatoId: id })
     })
     if (!response.ok) {
       throw new Error(`Error! status: ${response.status}`);
@@ -45,8 +45,23 @@ async function vote(candidatoId) {
   }
 }
 
-function voteNull(cargo) {
-  // console.log("votando nulo para o cargo de: " + cargo)
+async function voteNull(id) {
+  try {
+    const response = await fetch('http://localhost:8080/eleicao/votar-nullo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ eleicaoId: id })
+    })
+    if (!response.ok) {
+      throw new Error(`Error! status: ${response.status}`);
+    }
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 function voteBranco(cargo) {

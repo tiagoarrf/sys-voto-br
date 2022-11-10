@@ -163,6 +163,7 @@ function buttonsLarges(blanck, reset, confirm, finale) {
                     display.resetDisplay(atualCargo, atualnumberCardo)
                     permitido = false
                     permitidoNulo = false
+                    permitidoBranco = false
                     confirmPressed = false
                     break;
                 case "CONFIRMA":
@@ -194,9 +195,11 @@ function buttonsLarges(blanck, reset, confirm, finale) {
                         permitido = false
                     }
                     if (permitidoNulo) {
-                        // data.vote(candidateEncontred.candidatoId)
+                        data.voteNull(eleicao.eleicaoId)
                         index++
                         confirmPressed = true
+                        permitido = false
+                        permitidoBranco = false
                         confirm.currentTime = 0
                         confirm.play()
                         display.barraLoading()
@@ -221,9 +224,11 @@ function buttonsLarges(blanck, reset, confirm, finale) {
                         permitidoNulo = false
                     }
                     if (permitidoBranco) {
-                        data.vote(candidateEncontred.candidatoId)
+                        // data.vote(candidateEncontred.candidatoId)
                         index++
                         confirmPressed = true
+                        permitido = false
+                        permitidoNulo = false
                         confirm.currentTime = 0
                         confirm.play()
                         display.barraLoading()
